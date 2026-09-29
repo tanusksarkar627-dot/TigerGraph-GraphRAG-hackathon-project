@@ -864,4 +864,136 @@ Evidence Quality| Explicit evidence collection and provenance
 Agentic Effectiveness| Dynamic tool selection
 Efficiency| Token/tool-call tracking
 Engineering Quality| Modular retrieval and orchestration
-Innovatio
+Innovation
+Agentic investigation over graph + vector + documents
+Presentation
+Interactive comparison and investigation trace
+📊 What Makes the System Agentic?
+A simple workflow:
+Question
+   ↓
+Search
+   ↓
+Answer
+is not sufficient to demonstrate autonomous investigation.
+Our agent instead follows:
+Question
+   ↓
+Understand
+   ↓
+Investigate
+   ↓
+Observe
+   ↓
+Identify missing information
+   ↓
+Choose next action 
+   ↓
+Investigate again
+   ↓
+Evaluate evidence
+   ↓
+Decide whether to stop
+   ↓
+Answer
+The important property is:
+The next investigation step is determined by the current evidence and information gaps rather than being a permanently fixed sequence.
+🎥 Demo
+The demonstration should show:
+A complex question being submitted.
+The RAG result.
+The GraphRAG result.
+The Agentic GraphRAG investigation.
+Graph evidence.
+Retrieved document evidence.
+Agent tool decisions.
+Final answer with supporting evidence.
+Metrics comparison.
+A question where the approaches behave differently.
+🗺️ High-Level Architecture
+                         ┌─────────────────┐
+                         │      USER       │
+                         └────────┬────────┘
+                                  │
+                                  ▼
+                         ┌─────────────────┐
+                         │   WEB CLIENT    │
+                         └────────┬────────┘
+                                  │
+                                  ▼
+                    ┌─────────────────────────┐
+                    │   AGENT ORCHESTRATOR    │
+                    │                         │
+                    │  State + Planning +     │
+                    │  Tool Selection +       │
+                    │  Stopping Criteria      │
+                    └───────────┬─────────────┘
+                                │
+              ┌─────────────────┼──────────────────┐
+              │                 │                  │
+              ▼                 ▼                  ▼
+       ┌────────────┐    ┌────────────┐    ┌─────────────┐
+       │   VECTOR   │    │    GRAPH   │    │  DOCUMENT   │
+       │   SEARCH   │    │   SEARCH   │    │  RETRIEVAL  │
+       
+       └─────┬──────┘    └─────┬──────┘    └──────┬──────┘
+             │                 │                  │
+             ▼                 ▼                  ▼
+       ┌──────────────────────────────────────────────┐
+       │              EVIDENCE MANAGER                │
+       └──────────────────────┬───────────────────────┘
+                              │
+                              ▼
+                       ┌─────────────┐
+                       │  REASONING  │
+                       │    MODEL    │
+                       └──────┬──────┘
+                              │
+                              ▼
+                    ┌───────────────────┐
+                    │ ANSWER + EVIDENCE │
+                    └───────────────────┘
+👥 Team
+Sl.no   Name                             Role
+ 1.     Tanusk Sarkar                  Idea Representator
+ 2.     Prerona Mukherjee              Lead Backend developer
+ 3.     Ruposhree Paramanik            Lead Frontend developer
+ 4.     Rupayan Ghosh                  Researcher
+📜 License
+This project is released under the MIT License.
+See LICENSE for details.
+🙏 Acknowledgements
+This project was developed for the TigerGraph Agentic GraphRAG Hackathon.
+We acknowledge the TigerGraph ecosystem and the technologies that make graph-based retrieval, vector search, and agentic investigation possible.
+⭐ Final Summary
+                 ┌──────────────────────────┐
+                 │      COMPLEX QUESTION    │
+                 └────────────┬─────────────┘
+                              │
+                              ▼
+                 ┌──────────────────────────┐
+                 │    AGENTIC INVESTIGATION │
+                 └────────────┬─────────────┘
+                              │
+             ┌────────────────┼────────────────┐
+             ▼                ▼                ▼
+        📄 Documents      🕸️ Graph          🔎 Vectors
+             │                │                │
+             └────────────────┼────────────────┘
+                              ▼
+                    📚 Evidence Manager
+                              │
+                              ▼
+                       🧠 Reasoning
+                              │
+                              ▼
+                    💬 Evidence-backed
+                         ANSWER
+                              │
+                              ▼
+                     📊 BENCHMARK
+                              │
+             ┌────────────────┼────────────────┐
+             ▼                ▼                ▼
+            RAG           GraphRAG       Agentic GraphRAG
+Retrieve. Connect. Investigate. Verify. Answer.
